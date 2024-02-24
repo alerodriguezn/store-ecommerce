@@ -15,24 +15,25 @@ export default async function ProductPage({ params }: Props) {
     return;
   }
 
-  //Desestructura el objeto aca
+  const { name, description, price, stockQuantity, imageUrl } = product;
 
   return (
     <div className="flex justify-center">
-      <Image src={product.imageUrl} alt="asd" width={500} height={500} />
+      <Image src={imageUrl} alt="asd" width={500} height={500} />
 
       <div className="col-span-1 px-5">
-        <span>Stock: 12</span>
+        <span>Stock: {stockQuantity}</span>
         <h1
           className={`antialiased font-bold text-xl  `}
         >
-          Titulo del Producto
+          {name}
         </h1>
-        <p className="text-lg mb-5">$12</p>
+        <p className="text-lg mb-5">${price}</p>
 
         <h3 className="font-bold text-sm">Description</h3>
-        <p className="font-light">Aqui va la descripcion</p>
+        <p className="font-light">{description}</p>
       </div>
     </div>
   );
 }
+
