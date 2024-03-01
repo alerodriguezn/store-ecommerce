@@ -7,12 +7,13 @@ interface PaginationOptions {
   categoryId?: number;
   page?: number;
   take?: number;
+  name?: string | null;
   priceMin?: number | null;
   priceMax?: number | null ;
 
 }
 
-export const getPaginatedProducts = async ({ page = 0, take = 10, categoryId, priceMax, priceMin}: PaginationOptions, ) => {
+export const getPaginatedProducts = async ({ page = 0, take = 10, categoryId, priceMax, priceMin, name}: PaginationOptions, ) => {
 
   if (isNaN(Number(page))) page = 0;
   if (page < 0) page = 0;
@@ -20,11 +21,14 @@ export const getPaginatedProducts = async ({ page = 0, take = 10, categoryId, pr
   const category = categoryId ? `&categoryId=${categoryId}` : "";
   const priceMaxQuery = priceMax ? `&priceMax=${priceMax}` : "";
   const priceMinQuery = priceMin ? `&priceMin=${priceMin}` : "";
+  const productName = name ? `&name=${name}` : "";
+
+
 
 
   try {
     const data: ProductsResponse = await fetch(
-      `https://fake-store-api-409620.rj.r.appspot.com/api/products/all?page=${page}&size=${take}${category}${priceMaxQuery}${priceMinQuery}`
+      `https://fake-store-api-409620.rj.r.appspot.com/api/products/all?page=${page}&size=${take}${category}${priceMaxQuery}${priceMinQuery}${productName}`
     ).then((res) => res.json());
 
     return {

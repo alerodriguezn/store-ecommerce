@@ -61,7 +61,7 @@ export const FiltersList = () => {
             name="contact"
             value="email"
           />
-          <label htmlFor="electronica">Email</label>
+          <label htmlFor="electronica">Moda</label>
 
           <input
             type="radio"
@@ -69,10 +69,10 @@ export const FiltersList = () => {
             name="contact"
             value="phone"
           />
-          <label htmlFor="contactChoice2">Phone</label>
+          <label htmlFor="contactChoice2">Belleza</label>
 
           <input type="radio" id="contactChoice3" name="contact" value="mail" />
-          <label htmlFor="contactChoice3">Mail</label>
+          <label htmlFor="contactChoice3">Hogar</label>
 
           
         </div>

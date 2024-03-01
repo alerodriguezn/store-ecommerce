@@ -2,6 +2,7 @@ import { ProductGrid } from "@/components/products/ProductGrid";
 import { Pagination } from "@/components/ui/Pagination";
 import { getPaginatedProducts } from "@/actions/products/get-products-paginated";
 import { FiltersList } from "@/components/filters/FiltersList";
+import { SearchBar } from '../../components/filters/SearchBar';
 
 interface Props {
   searchParams: {
@@ -9,6 +10,7 @@ interface Props {
     priceMin?: string;
     priceMax?: string;
     categoryId?: string;
+    name?: string;
   };
 }
 
@@ -23,10 +25,13 @@ export default async function Home({ searchParams }: Props) {
     ? parseInt(searchParams.priceMax)
     : null;
 
+  const name = searchParams.name ? searchParams.name : null;
+
   const { products, totalPages } = await getPaginatedProducts({
     page,
     priceMin,
     priceMax,
+    name
   });
 
   if (!products) {
@@ -39,6 +44,7 @@ export default async function Home({ searchParams }: Props) {
         <FiltersList />
       </aside>
       <div className="col-span-3">
+        <SearchBar/>
         <ProductGrid products={products} />
         <Pagination totalPages={totalPages} />
       </div>
