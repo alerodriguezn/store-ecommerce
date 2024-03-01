@@ -1,4 +1,4 @@
-export interface ProductsResponse {
+export interface RootObject {
   content:          Product[];
   pageable:         Pageable;
   totalPages:       number;

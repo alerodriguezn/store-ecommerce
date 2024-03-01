@@ -1,6 +1,6 @@
 "use server";
 
-import { ProductsResponse } from "@/interfaces/products";
+import { RootObject } from "@/interfaces/products";
 
 
 interface PaginationOptions {
@@ -27,7 +27,7 @@ export const getPaginatedProducts = async ({ page = 0, take = 10, categoryId, pr
 
 
   try {
-    const data: ProductsResponse = await fetch(
+    const data: RootObject = await fetch(
       `https://fake-store-api-409620.rj.r.appspot.com/api/products/all?page=${page}&size=${take}${category}${priceMaxQuery}${priceMinQuery}${productName}`
     ).then((res) => res.json());
 
