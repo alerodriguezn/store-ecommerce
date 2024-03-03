@@ -1,4 +1,6 @@
-export interface RootObject {
+import { Category } from './categories'
+
+export interface RootObjectProduct {
   content:          Product[];
   pageable:         Pageable;
   totalPages:       number;
