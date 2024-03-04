@@ -22,7 +22,6 @@ export const FiltersList = ({ categories }: Props) => {
   const handleChangeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(e.target.value);
 
-    console.log(e.target.value);
 
     const params = new URLSearchParams();
     params.set("categoryId", e.target.value);

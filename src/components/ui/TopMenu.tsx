@@ -1,8 +1,7 @@
 "use client";
 
-import { IoSearchOutline } from "react-icons/io5";
 import Link from "next/link";
-
+import { DropdownMenu } from './DropdownMenu';
 const navList = [
   {
     name: "Electrónicos",
@@ -27,6 +26,8 @@ const navList = [
 ];
 
 export const TopMenu = () => {
+
+
   return (
     <nav className="flex px-5 justify-between items-center w-full">
       <div>
@@ -48,9 +49,13 @@ export const TopMenu = () => {
       </div>
 
       <div className="flex items-center">
-        <button className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 ">
+
+
+        <DropdownMenu />
+   
+        {/* <button className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 ">
           Menu
-        </button>
+        </button> */}
       </div>
     </nav>
   );
