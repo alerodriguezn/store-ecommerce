@@ -3,14 +3,17 @@ import { Pagination } from "@/components/ui/Pagination";
 import { getPaginatedProducts } from "@/actions/products/get-products-paginated";
 import { FiltersList } from "@/components/filters/FiltersList";
 import { SearchBar } from '../../components/filters/SearchBar';
-import { getAllCategories } from "@/actions/categories/get-all-categories";
+// import { getAllCategories } from "@/actions/categories/get-all-categories";
+import { getAllCategories } from "@/actions/categories/get-all-categories-v2";
+import { getProducts } from "@/actions/products/get-products-v2";
 
 interface Props {
   searchParams: {
     page?: string;
     priceMin?: string;
     priceMax?: string;
-    categoryId?: string;
+    // categoryId?: string;
+    category: string
     name?: string;
   };
 }
@@ -18,6 +21,7 @@ interface Props {
 export default async function Home({ searchParams }: Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 0;
 
+  // const { categories } = await getAllCategories();
   const { categories } = await getAllCategories();
 
   if(!categories){
@@ -34,15 +38,21 @@ export default async function Home({ searchParams }: Props) {
 
   const name = searchParams.name ? searchParams.name : null;
 
-  const categoryId = searchParams.categoryId ? parseInt(searchParams.categoryId) : null;
+  // const categoryId = searchParams.categoryId ? parseInt(searchParams.categoryId) : null;
 
-  const { products, totalPages } = await getPaginatedProducts({
-    page,
-    priceMin,
-    priceMax,
-    name,
-    categoryId,
-  });
+  const category = searchParams.category ? searchParams.category : null;
+
+
+  // const { products, totalPages } = await getPaginatedProducts({
+  //   page,
+  //   priceMin,
+  //   priceMax,
+  //   name,
+  //   categoryId,
+  // });
+
+  const { products } = await getProducts({category, priceMax, priceMin, name});;
+
 
   if (!products) {
     return;
@@ -56,7 +66,7 @@ export default async function Home({ searchParams }: Props) {
       <div className="col-span-3">
         <SearchBar/>
         <ProductGrid products={products} />
-        <Pagination totalPages={totalPages} />
+        {/* <Pagination totalPages={totalPages} /> */}
       </div>
     </main>
   );

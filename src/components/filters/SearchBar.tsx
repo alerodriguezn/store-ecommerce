@@ -4,11 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
-import { ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
 
 export const SearchBar = () => {
-  const router = useRouter();
 
   const [name, setName] = useState<string>("");
 
@@ -29,7 +26,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex mt-4">
       <input
         type="text"
         className="w-full rounded px-2"

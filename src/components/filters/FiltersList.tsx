@@ -7,7 +7,7 @@ import { Category } from "@/interfaces/categories";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  categories: Category[];
+  categories: string[];
 }
 
 export const FiltersList = ({ categories }: Props) => {
@@ -24,7 +24,7 @@ export const FiltersList = ({ categories }: Props) => {
 
 
     const params = new URLSearchParams();
-    params.set("categoryId", e.target.value);
+    params.set("category", e.target.value);
     const newUrl = `${pathname}?${params.toString()}`;
     router.push(newUrl);
   };
@@ -82,16 +82,16 @@ export const FiltersList = ({ categories }: Props) => {
         <h2 className="font-semibold">Categorias</h2>
         <div className="grid grid-cols-1 gap-2">
           {categories.map((category) => (
-            <div key={category.id} className="flex items-center gap-2">
+            <div key={category} className="flex items-center gap-2">
               <input
                 type="radio"
-                id={category.id.toString()}
-                name={category.name}
-                value={category.id}
-                checked={selectedOption === category.id.toString()}
+                id={category.toString()}
+                name={category}
+                value={category}
+                checked={selectedOption === category}
                 onChange={handleChangeOption}
               />
-              <label htmlFor="electronica">{category.name}</label>
+              <label htmlFor="electronica">{category}</label>
             </div>
           ))}
         </div>

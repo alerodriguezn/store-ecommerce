@@ -23,7 +23,8 @@ export default async function ProfilePage() {
       ) : (
         <span>No Image</span>
       )}
-
+      
+      <span className="font-bold text-md">{session.user.id}</span>
       <span className="font-bold text-md">{session.user.name}</span>
       <span className="text-md">{session.user.email}</span>
     </div>

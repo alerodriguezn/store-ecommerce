@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { DropdownMenu } from './DropdownMenu';
+import { IoCartOutline } from "react-icons/io5";
 const navList = [
   {
     name: "Electrónicos",
@@ -50,6 +51,10 @@ export const TopMenu = () => {
 
       <div className="flex items-center">
 
+          <Link href="/cart" className="mr-2">
+            <IoCartOutline size={25}/>
+          </Link>
+        
 
         <DropdownMenu />
    
