@@ -1,4 +1,8 @@
 import { TopMenu } from '../../components/ui/TopMenu';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function ShopLayout({
   children,
 }: {
@@ -7,6 +11,8 @@ export default function ShopLayout({
   return (
     <main className="min-h-screen flex flex-col items-center">
       <TopMenu/>
+      <ToastContainer />
+      
       {children}
     </main>
   );
