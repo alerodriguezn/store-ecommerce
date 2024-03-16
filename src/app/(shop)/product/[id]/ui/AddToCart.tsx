@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { QuantitySelector } from "@/components/ui/QuantitySelector";
-import { Product } from "@/interfaces/products-v2";
+import { Product } from "@/interfaces/products";
 import { CartProduct } from "@/interfaces/cart";
 import { useCartStore } from "@/store/cart/cart-store";
 import { ToastContainer, toast } from "react-toastify";
@@ -23,9 +23,9 @@ export const AddToCart = ({ product }: Props) => {
     const cartProduct: CartProduct = {
       id: product.id,
       quantity: quantity,
-      title: product.title,
+      title: product.name,
       price: product.price,
-      image: product.image,
+      image: product.imageUrl,
     };
 
     addProductToCart(cartProduct);

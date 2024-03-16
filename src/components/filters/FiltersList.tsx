@@ -7,7 +7,7 @@ import { Category } from "@/interfaces/categories";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  categories: string[];
+  categories: Category[];
 }
 
 export const FiltersList = ({ categories }: Props) => {
@@ -18,33 +18,31 @@ export const FiltersList = ({ categories }: Props) => {
   const [priceMax, setPriceMax] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string>("");
 
-  //redirect to the same page with the new query params
+
   const handleChangeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     setSelectedOption(e.target.value);
 
 
     const params = new URLSearchParams();
-    params.set("category", e.target.value);
+    params.set("categoryId", e.target.value);
     const newUrl = `${pathname}?${params.toString()}`;
     router.push(newUrl);
   };
 
   const createPageUrl = () => {
+
+    //get Current params and add new ones
     const params = new URLSearchParams();
-
-    if (priceMin === 0 && priceMax === 0) {
-      return `?${params.toString()}`;
+    params.set("priceMin", priceMin.toString());
+    params.set("priceMax", priceMax.toString());
+    if (selectedOption) {
+      params.set("categoryId", selectedOption);
     }
-
-    if (priceMin > 0) {
-      params.set("priceMin", priceMin.toString());
-    }
-
-    if (priceMax > 0) {
-      params.set("priceMax", priceMax.toString());
-    }
-
-    return `${pathname}?${params.toString()}`;
+    const newUrl = `${pathname}?${params.toString()}`;
+    return newUrl;
+    
+    
   };
 
   return (
@@ -82,16 +80,16 @@ export const FiltersList = ({ categories }: Props) => {
         <h2 className="font-semibold">Categorias</h2>
         <div className="grid grid-cols-1 gap-2">
           {categories.map((category) => (
-            <div key={category} className="flex items-center gap-2">
+            <div key={category.id} className="flex items-center gap-2">
               <input
                 type="radio"
-                id={category.toString()}
-                name={category}
-                value={category}
-                checked={selectedOption === category}
+                id={category.id.toString()}
+                name={category.id.toString()}
+                value={category.id}
+                checked={selectedOption === category.id.toString()}
                 onChange={handleChangeOption}
               />
-              <label htmlFor="electronica">{category}</label>
+              <label htmlFor="electronica">{category.name}</label>
             </div>
           ))}
         </div>

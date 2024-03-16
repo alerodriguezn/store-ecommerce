@@ -2,18 +2,16 @@ import { ProductGrid } from "@/components/products/ProductGrid";
 import { Pagination } from "@/components/ui/Pagination";
 import { getPaginatedProducts } from "@/actions/products/get-products-paginated";
 import { FiltersList } from "@/components/filters/FiltersList";
-import { SearchBar } from '../../components/filters/SearchBar';
-// import { getAllCategories } from "@/actions/categories/get-all-categories";
-import { getAllCategories } from "@/actions/categories/get-all-categories-v2";
-import { getProducts } from "@/actions/products/get-products-v2";
+import { SearchBar } from "../../components/filters/SearchBar";
+import { getAllCategories } from "@/actions/categories/get-all-categories";
 
 interface Props {
   searchParams: {
     page?: string;
     priceMin?: string;
     priceMax?: string;
-    // categoryId?: string;
-    category: string
+    categoryId?: string;
+
     name?: string;
   };
 }
@@ -21,38 +19,26 @@ interface Props {
 export default async function Home({ searchParams }: Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 0;
 
-  // const { categories } = await getAllCategories();
   const { categories } = await getAllCategories();
 
-  if(!categories){
-    return
+  if (!categories) {
+    return;
   }
 
-  const priceMin = searchParams.priceMin
-    ? parseInt(searchParams.priceMin)
-    : null;
-
-  const priceMax = searchParams.priceMax
-    ? parseInt(searchParams.priceMax)
-    : null;
-
+  
+  const priceMin = searchParams.priceMin ? parseInt(searchParams.priceMin) : null;
+  const priceMax = searchParams.priceMax ? parseInt(searchParams.priceMax) : null;
   const name = searchParams.name ? searchParams.name : null;
-
-  // const categoryId = searchParams.categoryId ? parseInt(searchParams.categoryId) : null;
-
-  const category = searchParams.category ? searchParams.category : null;
+  const categoryId = searchParams.categoryId ? parseInt(searchParams.categoryId) : null;
 
 
-  // const { products, totalPages } = await getPaginatedProducts({
-  //   page,
-  //   priceMin,
-  //   priceMax,
-  //   name,
-  //   categoryId,
-  // });
-
-  const { products } = await getProducts({category, priceMax, priceMin, name});;
-
+  const { products, totalPages } = await getPaginatedProducts({
+    page,
+    priceMin,
+    priceMax,
+    name,
+    categoryId,
+  });
 
   if (!products) {
     return;
@@ -64,17 +50,10 @@ export default async function Home({ searchParams }: Props) {
         <FiltersList categories={categories} />
       </aside>
       <div className="col-span-3">
-        <SearchBar/>
+        <SearchBar />
         <ProductGrid products={products} />
-        {/* <Pagination totalPages={totalPages} /> */}
+        <Pagination totalPages={totalPages} />
       </div>
     </main>
   );
-}
-
-{
-  /* <main className="flex flex-col justify-center items-center w-1/2">
-     
-     
-   </main> */
 }

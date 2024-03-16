@@ -14,6 +14,9 @@ export const SearchBar = () => {
   const createUrl = () => {
     const params = new URLSearchParams();
 
+
+    console.log(params.get("priceMin"));
+
     if (name === "") {
       return `?${params.toString()}`;
     }

@@ -15,6 +15,11 @@ const nextConfig = {
                 hostname:"fakestoreapi.com"
             
             },
+            {
+                protocol:"https",
+                hostname:"res.cloudinary.com"
+            
+            },
         ]
     }
 };

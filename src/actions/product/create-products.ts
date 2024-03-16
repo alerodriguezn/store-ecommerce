@@ -2,14 +2,14 @@
 
 import { Product } from "@/interfaces/products";
 
-export const CreateProduct = async (name: String, descrition: String, price: number, StockQuantity: number, categoryid: number, imageUrl: String) => {
+export const CreateProduct = async (name: String, description: String, price: number, StockQuantity: number, categoryid: number, imageUrl: String) => {
     try {
         const NewProduct: Product  = await fetch('https://fake-store-api-2no73ornoa-uc.a.run.app/api/products/create',{
             method:"POST",
             body:JSON.stringify(
                 {
                     "name": name,
-                    "description": descrition,
+                    "description": description,
                     "price": price,
                     "stockQuantity": StockQuantity,
                     "categoryId": categoryid,

@@ -1,6 +1,5 @@
 import Image from "next/image";
-// import { getProductById } from "@/actions/product/get-product-by-id";
-import { getProductById } from "@/actions/product/get-product-by-id-v2";
+import { getProductById } from "@/actions/product/get-product-by-id";
 import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
@@ -17,18 +16,18 @@ export default async function ProductPage({ params }: Props) {
     return;
   }
 
-  const { title, description, price, image } = product;
+  const { name, description, price, imageUrl } = product;
 
   return (
     <div className="flex justify-center mt-4">
-      <Image src={image} alt="asd" width={500} height={500} className="rounded-md" />
+      <Image src={imageUrl} alt="asd" width={500} height={500} className="rounded-md" />
 
       <div className="col-span-1 px-5">
         <span>Stock: { 10 }</span>
         <h1
           className={`antialiased font-bold text-xl  `}
         >
-          {title}
+          {name}
         </h1>
         <p className="text-lg mb-5">${price}</p>
 

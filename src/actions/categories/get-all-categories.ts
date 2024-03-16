@@ -8,7 +8,7 @@ export const getAllCategories = async () => {
 
 
     try {
-        const categories: RootObjectCategory = await fetch(`https://fake-store-api-409620.rj.r.appspot.com/api/categories/all?size=10`).then((res) => res.json());
+        const categories: RootObjectCategory = await fetch(`https://fake-store-api-2no73ornoa-uc.a.run.app/api/categories/all?size=10`).then((res) => res.json());
         
         if (!categories) {
             return {

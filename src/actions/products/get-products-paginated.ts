@@ -25,10 +25,9 @@ export const getPaginatedProducts = async ({ page = 0, take = 10, categoryId, pr
 
 
 
-
   try {
     const data: RootObjectProduct = await fetch(
-      `https://fake-store-api-409620.rj.r.appspot.com/api/products/all?page=${page}&size=${take}${category}${priceMaxQuery}${priceMinQuery}${productName}`
+      `https://fake-store-api-2no73ornoa-uc.a.run.app/api/products/all?page=${page}&size=${take}${category}${priceMaxQuery}${priceMinQuery}${productName}`
     ).then((res) => res.json());
 
     return {

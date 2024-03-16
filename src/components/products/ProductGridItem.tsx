@@ -1,4 +1,5 @@
-import { Product } from '@/interfaces/products-v2'
+
+import { Product } from '@/interfaces/products'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -13,8 +14,8 @@ export const ProductGridItem = ({ product }: Props) => {
     <div className='rounded-md w-full h-full bg-white flex flex-col justify-center p-2'>
         <Link href={`/product/${product.id}`}>
             <Image 
-                src={product.image} 
-                alt={product.title} 
+                src={product.imageUrl} 
+                alt={product.name} 
                 width={500} 
                 height={500}
                 className='w-full max-h-[25rem] object-contain rounded'
@@ -23,7 +24,7 @@ export const ProductGridItem = ({ product }: Props) => {
 
         <div className='p-4 flex flex-col'>
             <Link href={`/product/${product.id}`} className="hover:text-blue-600">
-                {product.title}
+                {product.name}
             </Link>
             <span className='font-bold'>${product.price}</span>
 

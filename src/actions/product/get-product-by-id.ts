@@ -4,7 +4,7 @@ import { Product } from "@/interfaces/products";
 
 export const getProductById = async (id: number) => {
   try {
-    const product: Product = await fetch(`https://fake-store-api-409620.rj.r.appspot.com/api/products/${id}`).then((res) => res.json());
+    const product: Product = await fetch(`https://fake-store-api-2no73ornoa-uc.a.run.app/api/products/${id}`).then((res) => res.json());
 
     if (!product) {
       return {

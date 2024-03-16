@@ -1,14 +1,11 @@
-// import { Product } from "@/interfaces/products";
-import { Product } from "@/interfaces/products-v2";
-import { ProductGridItem } from "./ProductGridItem";
+import { Product } from "@/interfaces/products";
 
-// interface Props {
-//   products: Product[];
-// }
+import { ProductGridItem } from "./ProductGridItem";
 
 interface Props {
   products: Product[];
 }
+
 
 export const ProductGrid = ({ products }: Props) => {
   return (
