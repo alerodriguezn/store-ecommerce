@@ -4,18 +4,33 @@ import Link from "next/link";
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import { ChangeEvent } from "react";
+import { useSearchParams } from "next/navigation";
 
 export const SearchBar = () => {
 
+
   const [name, setName] = useState<string>("");
+
+  const currentParams = useSearchParams();
 
   const pathname = usePathname();
 
   const createUrl = () => {
     const params = new URLSearchParams();
 
+    if(currentParams.has("categoryId")){
+      params.set("categoryId", currentParams.get("categoryId") as string);
+    }
 
-    console.log(params.get("priceMin"));
+    if(currentParams.has("priceMin")){
+      params.set("priceMin", currentParams.get("priceMin") as string);
+    }
+
+    if(currentParams.has("priceMax")){
+      params.set("priceMax", currentParams.get("priceMax") as string);
+    }
+
 
     if (name === "") {
       return `?${params.toString()}`;
@@ -29,7 +44,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="flex mt-4">
+    <div className="flex">
       <input
         type="text"
         className="w-full rounded px-2"

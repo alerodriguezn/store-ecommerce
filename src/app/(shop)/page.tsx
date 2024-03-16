@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { ProductGrid } from "@/components/products/ProductGrid";
 import { Pagination } from "@/components/ui/Pagination";
 import { getPaginatedProducts } from "@/actions/products/get-products-paginated";

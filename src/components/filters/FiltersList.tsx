@@ -5,24 +5,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Category } from "@/interfaces/categories";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   categories: Category[];
 }
 
+
 export const FiltersList = ({ categories }: Props) => {
   const router = useRouter();
+
+  const currentParams = useSearchParams();
 
   const pathname = usePathname();
   const [priceMin, setPriceMin] = useState<number>(0);
   const [priceMax, setPriceMax] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string>("");
 
-
+  //redirect to the same page with the new query params
   const handleChangeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
-
     setSelectedOption(e.target.value);
 
+    console.log(e.target.value);
 
     const params = new URLSearchParams();
     params.set("categoryId", e.target.value);
@@ -31,18 +35,33 @@ export const FiltersList = ({ categories }: Props) => {
   };
 
   const createPageUrl = () => {
-
-    //get Current params and add new ones
     const params = new URLSearchParams();
+
+    if(currentParams.has("name")){
+      params.set("name", currentParams.get("name") as string);
+    }
+
+    //get the past params and add the new ones
+
     params.set("priceMin", priceMin.toString());
     params.set("priceMax", priceMax.toString());
     if (selectedOption) {
       params.set("categoryId", selectedOption);
     }
-    const newUrl = `${pathname}?${params.toString()}`;
-    return newUrl;
-    
-    
+
+    if (priceMin === 0 && priceMax === 0) {
+      return `?${params.toString()}`;
+    }
+
+    if (priceMin > 0) {
+      params.set("priceMin", priceMin.toString());
+    }
+
+    if (priceMax > 0) {
+      params.set("priceMax", priceMax.toString());
+    }
+
+    return `${pathname}?${params.toString()}`;
   };
 
   return (
@@ -84,7 +103,7 @@ export const FiltersList = ({ categories }: Props) => {
               <input
                 type="radio"
                 id={category.id.toString()}
-                name={category.id.toString()}
+                name={category.name}
                 value={category.id}
                 checked={selectedOption === category.id.toString()}
                 onChange={handleChangeOption}
