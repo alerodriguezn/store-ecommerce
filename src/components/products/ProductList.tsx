@@ -14,7 +14,7 @@ export const ProductList = ({ products }: Props) => {
 
 
   return (
-    <div className="flex flex-col gap-2 justify-center items-center ">
+    <div className="flex flex-col gap-2 justify-center items-center mt-4 ">
       {products.map((product) => (
         <ProductListItem key={product.id} product={product} />
       ))}

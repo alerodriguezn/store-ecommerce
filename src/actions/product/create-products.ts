@@ -2,9 +2,9 @@
 
 import { Product } from "@/interfaces/products";
 
-export const CreateProduct = async (name: String, description: String, price: number, StockQuantity: number, categoryid: number, imageUrl: String) => {
+export const createProduct = async (name: String, description: String, price: number, StockQuantity: number, categoryid: number, imageUrl: String) => {
     try {
-        const NewProduct: Product  = await fetch('https://fake-store-api-2no73ornoa-uc.a.run.app/api/products/create',{
+        const newProduct: Product  = await fetch('https://fake-store-api-2no73ornoa-uc.a.run.app/api/products/create',{
             method:"POST",
             body:JSON.stringify(
                 {
@@ -18,7 +18,7 @@ export const CreateProduct = async (name: String, description: String, price: nu
             )
         }).then(res=>res.json())
         
-        if (!NewProduct) {
+        if (!newProduct) {
             return {
                 ok: false,
                 message: "We cannot create the product",

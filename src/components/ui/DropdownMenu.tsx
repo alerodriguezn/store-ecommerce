@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { IoPerson } from "react-icons/io5";
 import { IoLogIn } from "react-icons/io5";
+import { IoSettings } from "react-icons/io5";
 import Link from "next/link";
 
 export const DropdownMenu = () => {
@@ -45,6 +46,15 @@ export const DropdownMenu = () => {
           </li>
           <li>
             <Link
+              href="/admin"
+              className="block px-4 py-2 text-sm"
+            >
+              <IoSettings className="inline-block mr-2"/>
+              Admin
+            </Link>
+          </li>
+          <li>
+            <Link
               href={session?.user ? "api/auth/signout" : "api/auth/signin"}
               className="block px-4 py-2 text-sm"
             >
@@ -53,6 +63,7 @@ export const DropdownMenu = () => {
              
             </Link>
           </li>
+          
         </ul>
       )}
     </div>

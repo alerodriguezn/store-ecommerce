@@ -1,7 +1,7 @@
 import { Product } from "@/interfaces/products";
 import Image from "next/image";
 import Link from "next/link";
-import { DeleteProductButton } from './DeleteProductButton';
+import { DeleteProductButton } from "./DeleteProductButton";
 
 interface Props {
   product: Product;
@@ -30,11 +30,13 @@ export const ProductListItem = ({ product }: Props) => {
       </div>
 
       <div className="flex justify-center items-center mx-3 gap-2">
-        <button className="rounded bg-green-600 font-semibold text-sm text-white p-1">Editar</button>
+        <Link
+          href={`/admin/product/${product.id}`}
+          className="rounded bg-green-600 font-semibold text-sm text-white p-1"
+        >
+          Editar
+        </Link>
         <DeleteProductButton id={product.id} />
-        
-
-
       </div>
     </div>
   );
