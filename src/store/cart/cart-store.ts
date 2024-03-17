@@ -14,6 +14,7 @@ interface State {
     };
     updateProductQuantity: (product: CartProduct, quantity: number) => void;
     removeProduct: (product: CartProduct) => void;
+    clearCart: () => void;
 }
 
 

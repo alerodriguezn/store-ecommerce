@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { IoPerson } from "react-icons/io5";
 import { IoLogIn } from "react-icons/io5";
 import { IoSettings } from "react-icons/io5";
+import { IoBagHandleSharp  } from "react-icons/io5";
 import Link from "next/link";
 
 export const DropdownMenu = () => {
@@ -42,6 +43,15 @@ export const DropdownMenu = () => {
             >
               <IoPerson className="inline-block mr-2" />
               Perfil
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/orders"
+              className="block px-4 py-2 text-sm"
+            >
+              <IoBagHandleSharp  className="inline-block mr-2"/>
+              Ordenes
             </Link>
           </li>
           <li>
